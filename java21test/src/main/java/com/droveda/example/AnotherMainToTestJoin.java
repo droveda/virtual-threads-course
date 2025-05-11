@@ -10,21 +10,21 @@ public class AnotherMainToTestJoin {
 
         Thread thread = Thread.ofPlatform().start(() -> {
             try {
-                System.out.println("Thread 1");
+                System.out.println("My new Thread running...");
                 TimeUnit.SECONDS.sleep(3);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
 
-            System.out.println("Thread 2");
+            System.out.println("My new Thread ended...");
         });
 
-        System.out.println("This is my main thread ABC");
+        System.out.println("This is my main thread before the join");
 
         thread.join();
 
-        System.out.println("This is my main thread end");
-
+        System.out.println("This is my main thread after the join");
+        System.out.println("Main thread - Ending my program...");
     }
 
 }
