@@ -3,6 +3,11 @@
 Java Completeble Future is equivalente to JavaScript promisses.  
 Java Completable Future was introduced in Java 8, and allowed reactive programming in Java.  
 
+It executes a task in the **Common ForkJoin Pool** of the JVM by default.  
+Both runAsync and supplyAsync has an overloaded method where another executor service can be passed as an additional parameter.  
+
+Note: differentce between the pipeline creation stage Versus the pipeline execution stage  
+
 See example:  
 com.droveda.example.completablefuture.CompletableFutureTest  
 
@@ -14,13 +19,13 @@ public class CompletableFuture<T> implements Future<T>, CompletionStage<T> {
     public static <U> CompletableFuture<U> supplyAsync(Supplier<U> supplier)
 
     //methods to help with the pipeline. Overloaded methods available to use Executor
-    thenApply(Function...
-    thenCompose(Function...
-    thenAccept(Consumer...
-    thenRun(Runnable...
+    thenApply(Function<? super T,? extends U> fn)
+    thenCompose(Function<? super T, ? extends CompletionStage<U>> fn)
+    thenAccept(Consumer<? super T> action)
+    thenRun(Runnable action)
 
     //combine results of two tasks
-    public <U,V> CompletableFuture<V> thenCombine(
+    public <U,V> CompletableFuture<V> thenCombine(CompletionStage<? extends U> other, BiFunction<? super T, ? super U, ? extends V> fn)
 
     //Handle multiple Completable Futures
     public static CompletableFuture<Void> allOf(CompletableFuture<?>... cfs)
