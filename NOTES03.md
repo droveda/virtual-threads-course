@@ -102,3 +102,74 @@ This solves some problems but not all.
 * Head memory can be set
   * -Xmx, -Xms
 * java -Xss512k -Xmx1G -Xms256k com.droveda.test.CommandLineProcessor <command> <arg1> <arg2>
+
+
+### Threads and Scalability
+* Default stack size 1M
+  * as number is users increase, memory usage increases
+* There is a max limit to the max threads
+  * Depends on VM or Machine Memory
+  * Much more socket connections can be supported
+  * This prevents optimum scalability
+* IO bound tasks
+  * Paralyzes the OS thread for a longer time than necessary
+
+## Scalability Solutions
+
+{Optimized Scalable Application} + {Vertical Scaling} + {Horizontal Scaling}  
+
+### Vertical Scaling
+* Increase Resources
+* CPU, Memory, Disk Space, etc...
+* Limit to scaling
+* Increases cost
+* Cloud Environment
+
+### Horizontal Scaling
+* No Limit
+* Costly
+
+### Non Blocking IO
+
+![alt text](images/blocking-io.png "Blocking IO")
+
+![alt text](images/non-blocking-io.png "Non Blocking IO")  
+
+
+```
+pseudo code for Non Blocking IO (Callbacks)
+
+//Non blocking : fetch some data from DB
+FetchDataFromDB(dbUrl, DBCallback(data1)) {
+
+  //Non blocking : Fetch some data from Microservice 1
+  FetchDataFromService1(url1, RestCallback(data2)) {
+
+      //Process all data and send
+      combinedData = ProcessAndCombine(data1, data2)
+      SendData(combinedData)
+
+  }
+
+}
+
+//Control reaches here before data is returned
+//Thread is released
+```
+
+## Non Blocking IO in Java
+* Non Blocking IO
+  * Java NIO (New IO) {July 2011 with JDK 7}
+    * Non blocking File and Socket Handling
+  * Java CompletableFutures {March 2014 with JDK 8}
+  * Servlet 3.0 and 3.1 includes Non Blocking Servlet
+* Reactive Programming
+  * RxJava, Project Reactor
+  * Spring WebFlux (Spring V5)
+* Disadvantages
+  * High Complexity for Developers
+  * Easy to make mistakes
+  * End to End Non Blocking
+
+
+**Java Virtual Threads** is an alternative solution.  
