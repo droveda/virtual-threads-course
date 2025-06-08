@@ -67,3 +67,25 @@ CPU Cores :
 Mac OS : Ventura 13.3.1
 
 ```
+
+
+```
+Spring Boot with Virtual Threads : Further Reading
+
+I will be adding more content to the Spring Boot section. As we use Virtual Threads with Spring Boot more and more, more design patterns for usage are likely to emerge and I will be present this here. Here is some reading material.
+
+
+Virtual Threads is supported in Spring Boot from 3.2.0 onwards. Here's a link to the initial Virtual Thread support from the Spring Boot team.
+
+Initial Spring Boot support for Virtual Threads
+
+
+Virtual Threads are supported as preview with some of the earlier versions of Spring Boot. Here's a link which explains how to set that up
+
+Virtual Thread Support for earlier versions of Spring Boot
+
+
+https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-3.2.0-M1-Release-Notes#support-for-virtual-threads
+
+https://spring.io/blog/2022/10/11/embracing-virtual-threads
+```
