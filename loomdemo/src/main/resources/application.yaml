@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: loomdemo
+  threads:
+    virtual:
+      enabled: true
+
+logging:
+  level:
+    web: DEBUG
+  pattern:
+    console: "%d{HH:mm:ss} [%20thread] %msg%n"
+
+
+#server:
+#  tomcat:
+#    threads:
+#      mex: 200
